@@ -23,7 +23,8 @@
 %----------FONT OPTIONS----------
 % sans-serif options: \usepackage[sfdefault]{FiraSans}, \usepackage[sfdefault]{roboto}, \usepackage[sfdefault]{noto-sans}, \usepackage[default]{sourcesanspro}
 % serif options: \usepackage{CormorantGaramond}, \usepackage{charter}
-
+\usepackage[sfdefault]{FiraSans}
+% \usepackage[default]{sourcesanspro} % saves even MORE space
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields
 \fancyfoot{}
@@ -126,6 +127,17 @@
 %-----------WORK EXPERIENCE-----------
 \sectionwithvspace{Work Experience}
   \begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt, itemsep=0pt]
+    \item 
+      \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{DBS, Group Infrastructure \& Cloud, Singapore (Incoming)} & {\small May 2026 - Oct 2026} \\
+      \end{tabular*}\\
+      \vspace{0pt}
+          \begin{itemize}[leftmargin=0.14in, topsep=0pt, partopsep=0pt, itemsep=0pt]
+      \item\small{Developing end-to-end monitoring and reporting dashboards, and building automated data workflows using Python, Angular, MySQL, and Node.js to improve operational visibility and streamline enterprise processes.}
+
+      \end{itemize}
+    \vspace{-2pt}
+    
       \item 
       \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
         \textbf{NUS, SWE Undergraduate Teaching Assistant, Singapore} & {\small Aug 2025 - Dec 2025} \\
@@ -138,7 +150,6 @@
       \end{itemize}
     \vspace{-2pt}
 
-
     \item 
       \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
         \textbf{HTX, Cloud \& Software Engineer Intern, Singapore} & {\small May 2025 - Aug 2025} \\
@@ -149,6 +160,8 @@
       \item\small{Automated tracking of external contractor leave, connecting a SharePoint data source with an external interface, eliminating 20 hours spent monthly on data syncing and email tracking across departments.}
       \item\small{Created Agentic RAG agents specialised for custom workflows to improve manual analysis of documents, cutting repetitive processing tasks by 50\%.}
       \end{itemize}
+       \vspace{-2pt}
+
   \end{itemize}
 
 %-----------PROJECTS-----------
@@ -197,7 +210,7 @@
      \textbf{Languages}{: Python, C++, C\#, C, Java, SQL, TypeScript, HTML, CSS} \\
      \textbf{Frameworks \& Libraries}{: React, LangChain, LangGraph, FastAPI} \\
      \textbf{Developer Tools}{: GitHub, Gradle, CodeCov, Supabase, Tavily} \\
-     \textbf{Cloud \& Platforms}{: Azure, Microsoft Power Platform, Google Cloud Vertex AI}
+     \textbf{Cloud \& Platforms}{: AWS, Azure, Microsoft Power Platform, Google Cloud Vertex AI}
     }
  \end{itemize}
 
