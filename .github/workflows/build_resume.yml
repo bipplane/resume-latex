@@ -1,5 +1,3 @@
-﻿
-
 name: Build and Deploy Resume
 
 on:
@@ -15,6 +13,7 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       # 1. Checkout the repository content
       - name: Checkout repository
@@ -36,31 +35,36 @@ jobs:
       - name: Convert PDF to PNG
         run: |
           sudo apt-get update
-          sudo apt-get install -y imagemagick
-          convert -density 300 Ryan_Chen_Resume.pdf[0] -quality 90 -background white -alpha remove resume_preview.png
+          sudo apt-get install -y imagemagick pandoc
+          convert -density 300 Ryan_Chen_Resume.pdf\[0\] -quality 90 -background white -alpha remove resume_preview.png
         # [0] specifies the first page only. -density 300 gives high resolution.
+        # Added 'pandoc' package installation to this step to save setup time.
 
-      # 5. Commit the generated PDF and PNG back to the repository
+      # 5. Convert LaTeX to DOCX using Pandoc
+      - name: Convert LaTeX to DOCX
+        run: |
+          pandoc resume.tex -f latex -t docx -o Ryan_Chen_Resume.docx
+
+      # 6. Commit the generated PDF, DOCX, and PNG back to the repository
       - name: Commit files
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add Ryan_Chen_Resume.pdf resume_preview.png
+          git add Ryan_Chen_Resume.pdf Ryan_Chen_Resume.docx resume_preview.png
           # Commit only if there are changes
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Automated build: Update resume PDF and preview"
+            git commit -m "Automated build: Update resume PDF, DOCX, and preview"
             git push
           fi
           
-      # 6. (Optional but Recommended) Deploy to GitHub Pages
+      # 7. (Optional but Recommended) Deploy to GitHub Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.' # Upload the entire directory
+          path: '.' # Upload the entire directory (now containing PDF, DOCX, and PNG)
 
       - name: Deploy to GitHub Pages
         id: deployment
-
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4  
